@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from mahasiswa.models import Pkl
+from dosen.models import Dosen
 from catatan import models, forms
 # from forum.models import Forum
 
@@ -47,6 +48,11 @@ def cetak(req):
         'cetak' : cetak,
     })
 
+def cetak_dosen(req):
+    cetak_dosen = models.Dosen.objects.all()
+    return render(req, 'home/mitra.html',{
+        'cetak_dosen': cetak_dosen,
+    })
 # def forum_mhs(req):
 #     forum = models.Forum.objects.filter(pk=id)
 #     return render(req, 'home/index.html',{
