@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from mahasiswa.models import Pkl
 from dosen.models import Dosen
 from catatan import models, forms
-# from forum.models import Forum
+from forum.models import Forum
 
 def index(req):
     group = req.user.groups.first()
@@ -42,10 +42,10 @@ def delete_catatan(req, id):
     models.Catatan.objects.filter(pk=id).delete()
     return redirect('/')
 
-def cetak(req):
-    cetak = models.Catatan.objects.all()
-    return render(req, 'home/cetak.html', {
-        'cetak' : cetak,
+def forum_mhs(req):
+    forum = models.tasks.objects.filter(pk=id)
+    return render(req, 'home/index.html',{
+        'forum': forum,
     })
 
 def cetak_dosen(req):
@@ -58,3 +58,10 @@ def cetak_dosen(req):
 #     return render(req, 'home/index.html',{
 #         'forum': forum,
 #     })
+=======
+def cetak(req):
+    cetak = models.Catatan.objects.all()
+    return redirect(req, 'home/cetak.html',{
+        'cetak': cetak,
+    })
+
